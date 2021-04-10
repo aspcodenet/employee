@@ -15,6 +15,15 @@ public class EmployeeController {
 	private EmployeeRepository employeeRepository;
 
 
+    @GetMapping(path="/")
+    @CrossOrigin()
+    String empty()
+    {
+        return "jepp";
+    }
+
+
+
     @GetMapping(path="/employee")
     @CrossOrigin()
     List<Employee> getAll(){
