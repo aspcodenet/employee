@@ -1,6 +1,5 @@
 package com.example.employee;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class EmployeeController {
-    @Autowired
-	private EmployeeRepository employeeRepository;
 
+    @Autowired
+    private EmployeeService employeeService;
 
     @GetMapping(path="/")
     @CrossOrigin()
@@ -27,18 +26,13 @@ public class EmployeeController {
     @GetMapping(path="/employee")
     @CrossOrigin()
     List<Employee> getAll(){
-        var l = new ArrayList<Employee>();
-        for(Employee r : employeeRepository.findAll())
-        {
-            l.add(r);
-        }
-        return l;
+        return employeeService.getAll();
     }
 
     @GetMapping(path="/player/{id}")
     @CrossOrigin()
     Employee getSingle(@PathVariable Integer id){
-        return employeeRepository.findById(id).get();
+        return employeeService.get(id);
     }
 
     
